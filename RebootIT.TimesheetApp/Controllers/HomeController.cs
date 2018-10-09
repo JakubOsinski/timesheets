@@ -12,6 +12,7 @@ namespace RebootIT.TimesheetApp.Controllers
     {
         public IActionResult Index()
         {
+            // Test comment
             return View();
         }
 
