@@ -15,6 +15,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.MinutesWorked)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client) 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
 
             <th></th>
         </tr>
@@ -25,7 +34,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MinutesWorked)
             </td>
-        
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.CompanyName) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name) 
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
