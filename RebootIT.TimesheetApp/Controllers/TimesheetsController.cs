@@ -19,27 +19,22 @@ namespace RebootIT.TimesheetApp.Controllers
         }
 
         // GET: Timesheets
-        public async Task<IActionResult> Index(int? staffId)
+        public async Task<IActionResult> Index(int? staffId, int? clientId)
         {
             var timesheetDbContext = _context.Timesheets
                 .Include(t => t.Client)
                 .Include(t => t.Location)
                 .Include(t => t.Staff)
-                .Where(t => !staffId.HasValue || t.StaffId == staffId);
+                .Where(t => !staffId.HasValue || t.StaffId == staffId)
+              .Where(t => !clientId.HasValue || t.ClientId == clientId);
+
+        
+
 
             return View(await timesheetDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Indexx(int? client)
-        {
-            var timesheetDbContext = _context.Timesheets
-                .Include(t => t.Client)
-                .Include(t => t.Location)
-                .Include(t => t.Staff)
-                .Where(t => !clientId.HasValue || t.ClientId == clientId);
 
-            return View(await timesheetDbContext.ToListAsync());
-        }
 
 
         // GET: Timesheets/Details/5
