@@ -19,9 +19,14 @@ namespace RebootIT.TimesheetApp.Controllers
         }
 
         // GET: Timesheets
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? staffId)
         {
-            var timesheetDbContext = _context.Timesheets.Include(t => t.Client).Include(t => t.Location).Include(t => t.Staff);
+            var timesheetDbContext = _context.Timesheets
+                .Include(t => t.Client)
+                .Include(t => t.Location)
+                .Include(t => t.Staff)
+                .Where(t => !staffId.HasValue || t.StaffId == staffId);
+
             return View(await timesheetDbContext.ToListAsync());
         }
 
@@ -167,5 +172,7 @@ namespace RebootIT.TimesheetApp.Controllers
         {
             return _context.Timesheets.Any(e => e.Id == id);
         }
+
+  
     }
 }
